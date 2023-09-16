@@ -3,21 +3,70 @@ $(document).ready(function(){
     var resp0, resp1, resp2, resp3;
     var category1, category2, category3, category4;
     var fullArray = [];
+    var randomIndexArray = [];
+    var shuffledArray = [];
     var categoryArray = [];
     var selectedArray = [];
     var compareArray = [];
-    var indexArray = [];
+    var isRowCorrect=false;
+    var currrentRow=0;
+    var mistakesLeft=4;
+
 
   resp0 = ["animals","dog","cat","bird","mouse"];
   resp1 = ["colors","red","green","blue","yellow"];
   resp2 = ["fruits","apple","pear","banana","orange"];
-  resp3 = ["vegetables","carrot","corn","potato","lettuce"];
+  resp3 = ["vegetables","broccoli","corn","potato","lettuce"];
+
+  for(const i in resp0){
+    fullArray.push(resp0[i]);
+  }
+  for(const i in resp1){
+    fullArray.push(resp1[i]);
+  }
+  for(const i in resp2){
+    fullArray.push(resp2[i]);
+  }
+  for(const i in resp3){
+    fullArray.push(resp3[i]);
+  }
+
+  //console.log("fullArray: "+fullArray);
+
+  //SHUFFLE LIKE A PUFFLE!!!
+
+  for(const i in fullArray){ //runs from  0 => 15  (16 Times)
+
+
+    var random = Math.floor(Math.random() * fullArray.length);
+    randomIndexArray.push(random);
+
+    while(randomIndexArray.includes(random)){
+      random = Math.floor(Math.random() * fullArray.length);
+    }
+      randomIndexArray.push(random);
+
+    shuffledArray.push(fullArray[randomIndexArray[i]]);
+
+  }
+
+  console.log("PUFFLES: "+fullArray+"\n"+randomIndexArray+"\n"+shuffledArray);
+
+/*
+
+ fullArray = [red,green,monkey,hippo]
+
+ randomIndexArray = [2,1,3,0]
+
+ shuffledArray = [monkey,green,hippo,red]
+
+*/
+
 
   categoryArray.push(resp1.shift(),resp2.shift(),resp3.shift(),resp0.shift());
 
   compareArray.push(resp0,resp1,resp2,resp3);
 
-  //SHUFFLE!!!
 
   var dataSelected = $('.block#14').attr('data-selected');
   console.log(dataSelected);
@@ -25,10 +74,9 @@ $(document).ready(function(){
   $(".block").click(function(){
     if(selectedArray.length<4&&($(this).attr("data-selected"))=="false"){
       selectedArray.push($(this).text());
-      indexArray.push($(this).attr("id"));
       console.log(selectedArray.length+"++");
       $(this).attr("data-selected", "true");
-      $(this).css('background-color', 'blue');
+      $(this).css('background-color', '#93F6FA');
 
       console.log("adding " +$(this).text()+":"+selectedArray);
 
@@ -38,10 +86,6 @@ $(document).ready(function(){
         if($(this).text() == selectedArray[i]){
           selectedArray.splice(i,1);
           console.log("removing " +$(this).text()+":"+selectedArray);
-        }
-        if($(this).attr("id") == indexArray[i]){
-          indexArray.splice(i,1);
-          console.log("removing " +$(this).attr("id")+":"+indexArray);
         }
       }
       console.log(selectedArray.length+"--");
@@ -53,14 +97,12 @@ $(document).ready(function(){
 
     $("#submitButton").click(function(){
 
-      console.log(selectedArray+":"+indexArray);
         var correctCount=0;
-        var isRowCorrect=false;
         selectedArray.sort();
         //console.log(selectedArray +":"+resp0);
       for(const i in compareArray){
         compareArray[i].sort();
-        console.log(compareArray);
+        console.log(compareArray[i]+"\n"+selectedArray);
         for(const j in compareArray[i]){
           if(selectedArray[j]==compareArray[i][j]){
             correctCount++;
@@ -68,19 +110,52 @@ $(document).ready(function(){
         }
         if(correctCount==4){
           isRowCorrect=true;
+          console.log("COOL");
           break;
-          //console.log("COOL");
-        //}else{console.log("NOT COOL");
-        }
+        }//else{console.log("LOSERKYS");}
         correctCount=0;
       }
         
-      console.log(isRowCorrect);
-      var dHTML = `<td></td>`
-      $("#row1").html();
-      
+      if(isRowCorrect){
+
+       /* const temp = [];
+        for(var u = currrentRow*4 ; u < currrentRow*4+4; u++ ){
+          const thisTempCell="#"+u;
+          temp.push($(thisTempCell).text());
+        }*/
+
+
+
+
+           currrentRow++;
+      }
+      if(!isRowCorrect){
+        
+        //alert("YOU SUCK");
+        function wrongSelection(myCallBack){
+         // alert("inside");
+          const hiddenCircle = "#c"+mistakesLeft;
+          $(hiddenCircle).fadeOut(function(){
+            mistakesLeft--;
+            myCallBack();
+          });
+        }
+        function gameOverCheck(){
+          if(mistakesLeft==0){
+            alert("Game Over! You are Trash!");
+          }
+        }
+
+        wrongSelection(function(){
+          gameOverCheck();
+        });
+       
+      }
     });
  
+
+
+
 
 
 }); 
