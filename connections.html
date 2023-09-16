@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectionsAI</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <style>
+      .block{
+        font-size: medium;
+        width:100px;
+        height:100px;
+      }
+      #cTable{
+        width: 400px;
+        height: 400px;
+      }
+    </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 id="test">test! :)</h1>
+    <div class="d-flex justify-content-center">
+    <div class="row d-flex flex-column">
+      <table id="cTable" class=" table table-bordered border-black rounded d-flex justify-content-center">
+        <tbody class="rounded">
+          <tr id="row0">
+            <td class="block" id="0" data-selected="false">corn-0</td>
+            <td class="block" id="1" data-selected="false">cat-1</td>
+            <td class="block" id="2" data-selected="false">dog-2</td>
+            <td class="block" id="3" data-selected="false">potato-3</td>
+          </tr>
+          <tr id="row1">
+            <td class="block" id="4" data-selected="false">bird-4</td>
+            <td class="block" id="5" data-selected="false">lettuce-5</td>
+            <td class="block" id="6" data-selected="false">mouse-6</td>
+            <td class="block" id="7" data-selected="false">broccoli-7</td>
+          </tr>
+          <tr id="row2">
+            <td class="block" id="8"  data-selected="false">red-8</td>
+            <td class="block" id="9"  data-selected="false">orange-9</td>
+            <td class="block" id="10" data-selected="false">blue-10</td>
+            <td class="block" id="11" data-selected="false">banana-11</td>
+          </tr> 
+          <tr id="row3">
+            <td class="block" id="12" data-selected="false">green-12</td>
+            <td class="block" id="13" data-selected="false">pear-13</td>
+            <td class="block" id="14" data-selected="false">yellow-14</td>
+            <td class="block" id="15" data-selected="false">apple-15</td>
+          </tr>
+        </tbody>
+      </table>
+      <button id="submitButton" style="width: 400px;" class="btn btn-lg rouned btn-info d-flex justify-content-center">Submit!</button>
+    </div>
+    </div>
+  </div>
+    
+
+
+<script src="/app.js">
+
+</script>
+
+</body>
+</html>
