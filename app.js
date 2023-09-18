@@ -34,22 +34,48 @@ $(document).ready(function(){
   //console.log("fullArray: "+fullArray);
 
   //SHUFFLE LIKE A PUFFLE!!!
+/*
+  fullArray=["a","b","c"];
 
+  for(var i=0;i<fullArray.length;i++){
+    while(true){
+      var iFound = false;
+      var random = Math.floor(Math.random() * fullArray.length);
+      if(randomIndexArray.length==0){
+        randomIndexArray.push(random);
+        break;
+      }else{
+         for(var ri=0;ri<randomIndexArray.length;ri++){
+            if(randomIndexArray[ri]==random){
+                iFound = true;
+                break;
+            }
+        }
+        if(!iFound){
+          randomIndexArray.push(random);
+          break;
+        }
+      }
+    }
+  }
+
+  console.log(randomIndexArray.toString());
+*/
+  var random = Math.floor(Math.random() * fullArray.length); //rand 0-15
+
+  if(randomIndexArray.length==0){
+      randomIndexArray.push(random);
+  }
   for(const i in fullArray){ //runs from  0 => 15  (16 Times)
-
-
-    var random = Math.floor(Math.random() * fullArray.length);
-    randomIndexArray.push(random);
-
     while(randomIndexArray.includes(random)){
       random = Math.floor(Math.random() * fullArray.length);
     }
       randomIndexArray.push(random);
-
-    shuffledArray.push(fullArray[randomIndexArray[i]]);
+    //shuffledArray.push(fullArray[randomIndexArray[i]]);
 
   }
 
+  console.log(randomIndexArray);
   console.log("PUFFLES: "+fullArray+"\n"+randomIndexArray+"\n"+shuffledArray);
 
 /*
