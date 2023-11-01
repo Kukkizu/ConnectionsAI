@@ -30,7 +30,7 @@ $.ajax({
     crossDomain: true,
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer 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'
+      'Authorization': 'Bearer KEY'
     },
     contentType: 'application/json',
     // data: '{\n    "model": "text-davinci-003",\n    "prompt": "Say this is a test",\n    "max_tokens": 7,\n    "temperature": 0\n  }',
